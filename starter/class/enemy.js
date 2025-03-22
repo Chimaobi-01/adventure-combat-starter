@@ -4,6 +4,9 @@ const {Character} = require('./character');
 class Enemy extends Character {
   constructor(name, description, currentRoom) {
     // Fill this in
+    super(name, description, currentRoom)
+    this.cooldown = 3000
+    this.attackTarget = null
   }
 
   setPlayer(player) {
@@ -13,6 +16,12 @@ class Enemy extends Character {
 
   randomMove() {
     // Fill this in
+    const exitRooms = this.currentRoom.exits
+    const directions = this.currentRoom.getExits()
+    const randomInt = Math.floor(Math.random() * directions.length)
+    const key = directions[randomInt]
+    this.currentRoom = exitRooms[key]
+    this.cooldown = 3000
   }
 
   takeSandwich() {
@@ -37,6 +46,9 @@ class Enemy extends Character {
 
   attack() {
     // Fill this in
+    const player = this.attackTarget
+    player.health -= 10
+    this.cooldown = 3000
   }
 
   applyDamage(amount) {

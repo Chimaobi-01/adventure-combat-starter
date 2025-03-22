@@ -36,36 +36,50 @@ class Player extends Character {
   takeItem(itemName) {
 
     // Fill this in
-
+    this._switchItem(itemName, this.currentRoom, this)
   }
 
   dropItem(itemName) {
 
     // Fill this in
+    this._switchItem(itemName, this, this.currentRoom)
 
   }
 
   eatItem(itemName) {
 
     // Fill this in
+    const food = this.items.find(item => item.name === itemName)
+
+    if(food instanceof Food)
+      this.items = this.items.filter(item => item != food)
 
   }
 
   getItemByName(name) {
 
     // Fill this in
-
+    const item = this.items.find(item => item.name === name)
+    return item
   }
 
   hit(name) {
 
     // Fill this in
-
+    const enemies = this.currentRoom.getEnemies()
+    const enemy = enemies.find(enemy => enemy.name === name)
+    enemy.attackTarget = this
   }
 
   die() {
     console.log("You are dead!");
     process.exit();
+  }
+
+  _switchItem(itemName, from, to) {
+    const switchedItem = from.getItemByName(itemName)
+    to.items.push(switchedItem)
+    from.items = from.items.filter(item => item != switchedItem)
   }
 
 }

@@ -1,23 +1,24 @@
 const { expect } = require('chai');
 
-const {Player} = require("../class/player.js");
-const {Room} = require("../class/room.js");
-const {Item} = require("../class/item.js");
-const {Food} = require("../class/food.js");
+const { Player } = require("../class/player.js");
+const { Room } = require("../class/room.js");
+const { Item } = require("../class/item.js");
+const { Food } = require("../class/food.js");
 
-const {World} = require("../class/world.js");
+const { World } = require("../class/world.js");
 
-const {Character} = require("../class/character.js");
-const {Enemy} = require("../class/enemy.js");
+const { Character } = require("../class/character.js");
+const { Enemy } = require("../class/enemy.js");
 
-describe ('Character', function () {
+
+describe('Character', function () {
 
   let character;
   let room;
   let item;
 
-  beforeEach(function() {
-    room =  new Room("Test Room", "A test room");
+  beforeEach(function () {
+    room = new Room("Test Room", "A test room");
     item = new Item("rock", "just a simple rock");
     character = new Character('Character', 'an ordinary character', room);
     character.items.push(item);
@@ -68,15 +69,16 @@ describe ('Character', function () {
 
 });
 
-describe ('Enemy', function () {
+
+describe('Enemy', function () {
 
   let player;
   let enemy;
   let room;
   let item;
 
-  beforeEach(function() {
-    room =  new Room("Test Room", "A test room");
+  beforeEach(function () {
+    room = new Room("Test Room", "A test room");
     item = new Item("rock", "just a simple rock");
     character = new Character('Character', 'an ordinary character', room);
     character.items.push(item);
@@ -128,8 +130,7 @@ describe ('Enemy', function () {
 });
 
 
-
-describe ('Enemy', function () {
+describe('Enemy', function () {
 
   let enemy;
   let room;
@@ -137,7 +138,7 @@ describe ('Enemy', function () {
   let sandwich;
   let player;
 
-  beforeEach(function() {
+  beforeEach(function () {
     room = new Room("Test Room", "A test room");
     item = new Item("rock", "just a simple rock");
     sandwich = new Food("sandwich", "a delicious looking sandwich");
@@ -157,7 +158,6 @@ describe ('Enemy', function () {
     expect(enemy instanceof Enemy).to.be.true;
     expect(enemy instanceof Player).to.be.false;
   });
-
 
   it('should have a cooldown attribute that defaults to 3000ms', function () {
     expect(enemy.cooldown).to.equal(3000);
@@ -179,7 +179,6 @@ describe ('Enemy', function () {
     expect(enemy.cooldown).above(0);
   });
 
-
   it('should target the player when hit', function () {
 
     expect(enemy.attackTarget).to.equal(null);
@@ -189,7 +188,7 @@ describe ('Enemy', function () {
     expect(enemy.attackTarget).to.equal(player);
   });
 
-
+  
   it('should attack the player when targetting player', function () {
 
     player.hit('enemy');
@@ -204,5 +203,3 @@ describe ('Enemy', function () {
   });
 
 });
-
-

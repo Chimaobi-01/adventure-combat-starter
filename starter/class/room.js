@@ -54,6 +54,8 @@ class Room {
   getItemByName(name) {
 
     // Fill this in
+    const item = this.items.find(item => item.name === name)
+    return item
 
   }
 
@@ -61,8 +63,10 @@ class Room {
 
     // Fill this in
 
+  }
+
 }
 
 module.exports = {
-  Room,
-};
+  Room
+}
